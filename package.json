@@ -1,0 +1,10 @@
+{
+  "name": "smartKeyboard",
+  "version": "0.0.1",
+  "description": "fully customisable keyboard",
+  "dependencies": {
+    "express": "^4.10.2",
+    "robotjs": "^0.4.5",
+    "socket.io": "^1.7.2"
+  }
+}

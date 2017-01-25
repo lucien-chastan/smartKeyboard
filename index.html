@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>mySmartKeyboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .container{
+            display: flex;
+            padding: 0 5vh 0 5vh;
+            height: 50vh;
+        }
+        
+        .key, .macro{
+            flex: auto;
+            width: 100px;
+            height: 100%;
+            line-height: 100px;
+            box-sizing: border-box;
+            text-align: center;
+            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2);
+            border: none;
+            border-radius: 3px;
+        }
+        
+        .container:nth-child(odd) .key:nth-child(odd){
+            background-color: bisque;
+        }
+        .container:nth-child(odd) .key:nth-child(even){
+            background-color: aquamarine;
+        }
+        
+        .container:nth-child(even) .key:nth-child(odd){
+            background-color:aquamarine;
+        }
+        .container:nth-child(even) .key:nth-child(even){
+            background-color:bisque;
+        }
+        
+    </style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+</head>
+
+<body>
+    <h2>Step 1 - Install NodeJs</h2>
+    <p>Download one of these installer.</p>
+    <a href="https://nodejs.org/dist/v6.9.4/node-v6.9.4.pkg">MacOS</a>
+    <a href="https://nodejs.org/dist/v6.9.4/node-v6.9.4-x86.msi">Windows</a>
+    <a href="https://nodejs.org/en/download/package-manager/">Linux</a>
+    
+    <h2>Step 2 - Install smartKeyboard</h2>
+    <h2>Step 3 - Launch the app on the computer you want to control</h2>
+    <h2>Step 4 - Open a browser and navigate to the IP you are prompted</h2>
+<!--
+    <div class="container">
+        <button class="key" data-key="a">a</button>
+        <button class="key" data-key="a">z</button>
+        <button class="key" data-key="a">e</button>
+        <button class="key" data-key="a">r</button>
+        <button class="key" data-key="a">t</button>
+        <button class="key" data-key="a">y</button>
+        <button class="key" data-key="a">u</button>
+        <button class="key" data-key="a">i</button>
+        <button class="key" data-key="a">o</button>
+        <button class="key" data-key="a">p</button>
+    </div>
+    <div class="container">
+        <button class="key" data-key="a">q</button>
+        <button class="key" data-key="a">s</button>
+        <button class="key" data-key="a">d</button>
+        <button class="key" data-key="a">f</button>
+        <button class="key" data-key="a">g</button>
+        <button class="key" data-key="a">h</button>
+        <button class="key" data-key="a">j</button>
+        <button class="key" data-key="a">k</button>
+        <button class="key" data-key="a">l</button>
+        <button class="key" data-key="a">m</button>
+    </div>
+    <div class="container">    
+        <button class="key" data-key="a">w</button>
+        <button class="key" data-key="a">x</button>
+        <button class="key" data-key="a">c</button>
+        <button class="key" data-key="a">v</button>
+        <button class="key" data-key="a">b</button>
+        <button class="key" data-key="a">n</button>
+        <button class="key" data-key="a">space</button>
+        <button class="key" data-key="a">&#123;</button>
+        <button class="key" data-key="a">&#60;</button>
+    </div>
+    <div class="container">    
+        <button class="key" data-key="audio_prev">PREV</button>
+        <button class="key" data-key="audio_play">PLAY/PAUSE</button>
+        <button class="key" data-key="audio_next">NEXT</button>
+        <button class="key" data-key="audio_vol_down">VOL DOWN</button>
+        <button class="key" data-key="audio_vol_up">VOL UP</button>
+    </div>
+    <div class="container">    
+        <button class="key" data-key="up">&#8593;</button>
+        <button class="key" data-key="down">&#8595;</button>
+        <button class="key" data-key="right">&#8594;</button>
+        <button class="key" data-key="left">&#8592;</button>
+        <button class="key" data-key="enter">Enter</button>
+    </div>
+
+    <div class="container">    
+        <button class="mouse" data-key="left">DOUBLE CLICK</button>
+    </div>
+-->
+   
+   <div class="container">    
+        <button class="macro" data-key="shift_p">yt Prev</button>
+        <button class="key" data-key="space">yt Play</button>
+        <button class="macro" data-key="shift_n">yt Next</button>
+    </div>
+    <div class="container">    
+        <button class="key" data-key="audio_vol_down">VOL DOWN</button>
+        <button class="key" data-key="audio_vol_up">VOL UP</button>
+    </div>
+    
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script>
+        var socket = io();
+
+        $('.key').click(function(){
+            socket.emit('key', this.dataset.key);
+        })
+        
+        $('.macro').click(function(){
+            socket.emit('macro', this.dataset.key);
+        })
+        
+        $('.mouse').click(function(){
+            socket.emit('mouse', this.dataset.key);
+        })
+        
+        
+    </script>
+</body>
+
+</html>
